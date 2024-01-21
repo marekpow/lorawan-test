@@ -1,2 +1,2 @@
-../Core/Src/sys_sensors.c:168:9:EnvSensors_Read	2
-../Core/Src/sys_sensors.c:216:9:EnvSensors_Init	1
+../Core/Src/sys_sensors.c:169:9:EnvSensors_Read	2
+../Core/Src/sys_sensors.c:217:9:EnvSensors_Init	1

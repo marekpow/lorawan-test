@@ -5211,7 +5211,7 @@ void SystemApp_Init(void)
 
   /*Set verbose LEVEL*/
   UTIL_ADV_TRACE_SetVerboseLevel(VERBOSE_LEVEL);
- 8002652:	2002      	movs	r0, #2
+ 8002652:	2003      	movs	r0, #3
  8002654:	f01c f95e 	bl	801e914 <UTIL_ADV_TRACE_SetVerboseLevel>
 
   /*Initialize the temperature and Battery measurement services */

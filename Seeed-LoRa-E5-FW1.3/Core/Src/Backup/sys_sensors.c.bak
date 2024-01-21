@@ -28,6 +28,9 @@
 #endif /* SENSOR_ENABLED */
 
 /* USER CODE BEGIN Includes */
+#include "sys_sensors.h"
+#include "Si7021_driver.h"
+#include "sys_app.h"
 #if defined (SENSOR_ENABLED) && (SENSOR_ENABLED == 1)
 #if defined (X_NUCLEO_IKS01A2)
 #warning "IKS drivers are today available for several families but not stm32WL"
@@ -190,6 +193,15 @@ int32_t EnvSensors_Read(sensor_t *sensor_data)
 #elif !defined (SENSOR_ENABLED)
 #error SENSOR_ENABLED not defined
 #endif  /* SENSOR_ENABLED */
+
+#ifdef ENABLE_SENSOR_SI7201
+  int8_t status = r_both_Si7021(&HUMIDITY_Value, &TEMPERATURE_Value);
+
+  if(status != 0)
+  {
+	  APP_LOG(1, VLEVEL_M, "Read temperature & humidity error");
+  }
+#endif
 
   sensor_data->humidity    = HUMIDITY_Value;
   sensor_data->temperature = TEMPERATURE_Value;
