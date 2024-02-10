@@ -22,7 +22,6 @@
 #include "app_lorawan.h"
 #include "gpio.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "sys_sensors.h"

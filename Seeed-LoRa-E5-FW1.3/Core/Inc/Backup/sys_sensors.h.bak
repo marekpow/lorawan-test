@@ -28,7 +28,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 
 /* USER CODE BEGIN Includes */
-//#define ENABLE_SENSOR_SI7201
+#define ENABLE_SENSOR_SI7201
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

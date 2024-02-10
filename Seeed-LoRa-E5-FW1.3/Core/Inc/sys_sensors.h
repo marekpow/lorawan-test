@@ -22,8 +22,6 @@
 #ifndef __SENSORS_H__
 #define __SENSORS_H__
 
-#define ENABLE_SENSOR_SI7201
-
 #ifdef __cplusplus
 extern "C" {
 #endif
