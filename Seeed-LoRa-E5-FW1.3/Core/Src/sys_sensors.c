@@ -30,6 +30,7 @@
 /* USER CODE BEGIN Includes */
 #include "sys_sensors.h"
 #include "Si7021_driver.h"
+#include "BMP280.h"
 #include "sys_app.h"
 #if defined (SENSOR_ENABLED) && (SENSOR_ENABLED == 1)
 #if defined (X_NUCLEO_IKS01A2)
@@ -199,9 +200,43 @@ int32_t EnvSensors_Read(sensor_t *sensor_data)
 
   if(status != 0)
   {
-	  APP_LOG(1, VLEVEL_M, "Read temperature & humidity error");
+	  APP_LOG(1, VLEVEL_M, "Read temperature & humidity error\n");
+  }
+  else
+  {
+	  APP_LOG(1, VLEVEL_M, "Temperature & humidity read OK\n");
   }
 #endif
+
+#ifdef INC_BMP280_H_
+  extern bmp280_t bmp280;
+
+  char string[256];
+
+  BMP280_Read_All(&bmp280);
+
+  memset(&string, 0, strlen(string));
+
+  strcat(string, "Temperature: ");
+  utoa(bmp280.temperature, &string[strlen(string)], 3);
+  strcat(string, " C\n");
+
+  strcat(string, "Pressure: ");
+  utoa(bmp280.pressure, &string[strlen(string)], 3);
+  strcat(string, " Pa\n");
+
+  strcat(string, "Altitude: ");
+  utoa(bmp280.altitude, &string[strlen(string)], 3);
+  strcat(string, " m\n");
+
+  strcat(string, "Relative altitude: ");
+  utoa(bmp280.altitude - bmp280.init_height, &string[strlen(string)], 3);
+  strcat(string, " m\n\n\n");
+
+  APP_LOG(1, VLEVEL_M, string);
+
+#endif
+
 
   sensor_data->humidity    = HUMIDITY_Value;
   sensor_data->temperature = TEMPERATURE_Value;

@@ -26,7 +26,10 @@
 /* USER CODE BEGIN Includes */
 #include "sys_sensors.h"
 #include "Si7021_driver.h"
+#include "BMP280.h"
 #include "sys_app.h"
+
+bmp280_t bmp280;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,6 +60,16 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void BMP280_Init_()
+{
+#ifdef INC_BMP280_H_
+	HAL_Delay(2000);
+	BMP280_Init(&bmp280, F4_mode_normal, F5_t_sb_4sec, &hi2c3);
+	BMP280_Calibration(&bmp280);
+	APP_LOG(0, VLEVEL_M, "BMP280 initiated\n");
+#endif
+}
+
 void SI7201_Init()
   {
 #ifdef ENABLE_SENSOR_SI7201
@@ -65,14 +78,15 @@ void SI7201_Init()
   int8_t reset_status = rst_Si7021();
 
   if(enable_status == 0 && reset_status == 0){
-  	  APP_LOG(0, VLEVEL_M, "Si7021 status => OK");
+  	  APP_LOG(0, VLEVEL_M, "Si7021 status => OK\n");
     }
     else
     {
-      APP_LOG(0, VLEVEL_M, "Si7021 status => Error");
+      APP_LOG(0, VLEVEL_M, "Si7021 status => Error\n");
     }
 #endif
   }
+
 /* USER CODE END 0 */
 
 /**
@@ -108,6 +122,7 @@ int main(void)
   MX_I2C3_Init();
   /* USER CODE BEGIN 2 */
   SI7201_Init();
+  BMP280_Init_();
   /* USER CODE END 2 */
 
   /* Infinite loop */

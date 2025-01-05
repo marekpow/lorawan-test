@@ -201,6 +201,10 @@ int32_t EnvSensors_Read(sensor_t *sensor_data)
   {
 	  APP_LOG(1, VLEVEL_M, "Read temperature & humidity error");
   }
+  else
+  {
+	  APP_LOG(1, VLEVEL_M, "Temperature & humidity read OK");
+  }
 #endif
 
   sensor_data->humidity    = HUMIDITY_Value;

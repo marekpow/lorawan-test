@@ -89,12 +89,12 @@ extern "C" {
  * End-device IEEE EUI (big endian)
  * When set to 00,00,00,00,00,00,00,00 DevEui is automatically set with a value provided by MCU platform
  */
-#define LORAWAN_DEVICE_EUI                                 00,00,00,00,00,00,00,00
+#define LORAWAN_DEVICE_EUI                                0,0,0,0,0,0,0,0
 
 /*!
  * App/Join server IEEE EUI (big endian)
  */
-#define LORAWAN_JOIN_EUI                                   4A,96,5F,46,0D,E2,71,FD
+#define LORAWAN_JOIN_EUI                                   52,69,73,69,6E,67,48,46
 
 /*!
  * Device address on the network (big endian)
